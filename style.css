@@ -1,0 +1,393 @@
+/* Importa a fonte usada na interface. */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
+
+/* Cores e valores usados em vários lugares da página. */
+:root {
+  --fundo: #0b1120;
+  --cartao: #ffffff;
+  --texto: #172033;
+  --texto-suave: #667085;
+  --borda: #dce3ed;
+  --azul: #4f46e5;
+  --azul-escuro: #4338ca;
+  --azul-claro: #eef2ff;
+  --fundo-suave: #f7f9fc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 48px 24px;
+
+  font-family: "DM Sans", Arial, sans-serif;
+  color: var(--texto);
+
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(99, 102, 241, 0.22),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(14, 165, 233, 0.13),
+      transparent 30%
+    ),
+    var(--fundo);
+}
+
+/* Cartão central da aplicação. */
+.container {
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  padding: 48px;
+
+  background: var(--cartao);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 24px;
+
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.24),
+    0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Cabeçalho da página. */
+header {
+  padding-bottom: 26px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+header::before {
+  content: "CURRÍCULO + VAGA";
+
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 7px 11px;
+
+  border-radius: 999px;
+  background: var(--azul-claro);
+  color: var(--azul);
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Manrope", Arial, sans-serif;
+}
+
+h1 {
+  margin: 0;
+
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+header p {
+  max-width: 650px;
+  margin: 14px 0 0;
+
+  color: var(--texto-suave);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+#tela-envio,
+#tela-resultado {
+  margin-top: 30px;
+}
+
+/* Respeita os elementos que começam escondidos no HTML. */
+[hidden] {
+  display: none !important;
+}
+
+/* Campos do formulário. */
+label {
+  display: block;
+  margin: 26px 0 10px;
+
+  color: #293448;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+input[type="file"],
+textarea {
+  width: 100%;
+
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background: var(--fundo-suave);
+  color: var(--texto);
+
+  font: inherit;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+input[type="file"] {
+  padding: 10px;
+  color: var(--texto-suave);
+  font-size: 14px;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 14px;
+  padding: 10px 14px;
+
+  border: 0;
+  border-radius: 8px;
+  background: #e7ebf4;
+  color: #344054;
+
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: #dce3ef;
+}
+
+textarea {
+  min-height: 170px;
+  padding: 15px 16px;
+
+  line-height: 1.6;
+  resize: vertical;
+}
+
+textarea#texto-transcrito {
+  min-height: 220px;
+  margin-bottom: 14px;
+}
+
+textarea::placeholder {
+  color: #98a2b3;
+}
+
+input[type="file"]:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.45);
+  outline-offset: 3px;
+}
+
+textarea:focus {
+  border-color: #a5b4fc;
+  background: #ffffff;
+}
+
+.legenda {
+  color: var(--texto-suave);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.aviso {
+  margin-top: 24px;
+  padding: 14px 16px;
+
+  border: 1px solid #dfe6ff;
+  border-radius: 12px;
+  background: #f4f6ff;
+  color: #525f80;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Botões. */
+button {
+  padding: 13px 20px;
+
+  border: 0;
+  border-radius: 10px;
+  background: var(--azul);
+  color: #ffffff;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background: var(--azul-escuro);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#botao-analisar {
+  margin-top: 8px;
+  padding: 15px 24px;
+
+  box-shadow: 0 8px 18px rgba(79, 70, 229, 0.2);
+}
+
+#botao-analisar:hover:not(:disabled) {
+  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.3);
+}
+
+.secundario {
+  margin-top: 16px;
+
+  border: 1px solid var(--borda);
+  background: #ffffff;
+  color: #344054;
+}
+
+.secundario:hover:not(:disabled) {
+  background: #eef2f8;
+}
+
+#mensagem {
+  min-height: 20px;
+  margin: 14px 0 0;
+
+  color: #526079;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Bloco que contém os prints. */
+#lista-prints .detalhes {
+  margin-top: 18px;
+}
+
+#lista-prints h3 {
+  margin: 0;
+
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+
+/* Tela de resultados. */
+#tela-resultado h2 {
+  margin: 0;
+
+  font-size: 28px;
+  letter-spacing: -0.03em;
+}
+
+#tela-resultado > p {
+  color: var(--texto-suave);
+  line-height: 1.6;
+}
+
+.comparacao {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+
+  margin-top: 24px;
+}
+
+.coluna,
+.detalhes {
+  min-width: 0;
+  padding: 22px;
+
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  background: var(--fundo-suave);
+}
+
+.coluna h3,
+.detalhes h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.coluna pre {
+  margin: 20px 0 0;
+
+  color: #344054;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.75;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+#tela-resultado > .detalhes {
+  margin-top: 18px;
+}
+
+#confirmacao-vaga {
+  margin-top: 18px;
+}
+
+#confirmacao-vaga h3 {
+  margin-top: 0;
+}
+
+#confirmacao-vaga > p {
+  color: var(--texto-suave);
+  line-height: 1.6;
+}
+
+#alteracoes {
+  margin-bottom: 0;
+  color: #526079;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Ajustes para telas pequenas. */
+@media (max-width: 700px) {
+  body {
+    padding: 16px;
+  }
+
+  .container {
+    padding: 25px 20px;
+    border-radius: 18px;
+  }
+
+  header {
+    padding-bottom: 22px;
+  }
+
+  header p {
+    font-size: 15px;
+  }
+
+  .comparacao {
+    grid-template-columns: 1fr;
+  }
+
+  .coluna,
+  .detalhes {
+    padding: 18px;
+  }
+
+  #botao-analisar {
+    width: 100%;
+  }
+}

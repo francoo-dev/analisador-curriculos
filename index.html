@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Adaptador de Currículo</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="container">
+
+    <header>
+      <h1>Adaptador de Currículo</h1>
+
+      <p>
+        Envie seu currículo e as informações da vaga para preparar
+        uma versão adaptada à oportunidade.
+      </p>
+    </header>
+
+    <section id="tela-envio">
+      <form id="formulario">
+
+        <label for="arquivo">
+          Seu currículo em PDF
+        </label>
+
+        <input
+          type="file"
+          id="arquivo"
+          accept=".pdf,application/pdf"
+          required
+        >
+
+        <label for="imagem-vaga">
+          Prints da vaga
+        </label>
+
+        <input
+          type="file"
+          id="imagem-vaga"
+          accept="image/png,image/jpeg,image/webp"
+          multiple
+        >
+
+        <p class="legenda">
+          Cole um ou mais prints com <strong>Ctrl + V</strong>, selecione
+          imagens no computador ou informe a descrição em texto abaixo.
+        </p>
+
+        <div id="lista-prints"></div>
+
+        <label for="vaga">
+          Descrição da vaga em texto
+        </label>
+
+        <textarea
+          id="vaga"
+          placeholder="Se preferir, cole aqui a descrição e os requisitos da vaga..."
+        ></textarea>
+
+        <section id="confirmacao-vaga" class="detalhes" hidden>
+          <h3>Confira o texto extraído dos prints</h3>
+          <p>
+            Corrija a transcrição, se necessário. A comparação só começa
+            depois que você confirmar este texto.
+          </p>
+          <label for="texto-transcrito">Texto da vaga para confirmar</label>
+          <textarea id="texto-transcrito"></textarea>
+          <button type="button" id="confirmar-vaga">
+            Confirmar texto e comparar
+          </button>
+        </section>
+
+        <p class="aviso">
+          Os arquivos são processados localmente pelo Ollama. Prints são
+          transcritos para sua confirmação antes da comparação.
+        </p>
+
+        <button type="submit" id="botao-analisar">
+          Preparar comparação
+        </button>
+
+        <p id="mensagem" role="status" aria-live="polite"></p>
+
+      </form>
+    </section>
+
+    <section id="tela-resultado" hidden>
+
+      <h2>Comparação do currículo</h2>
+
+      <p>
+        Confira todas as informações antes de usar a versão adaptada.
+      </p>
+
+      <div class="comparacao">
+
+        <div class="coluna">
+          <h3>Currículo original</h3>
+
+          <p class="legenda">
+            Texto extraído do PDF enviado.
+          </p>
+
+          <pre id="curriculo-original"></pre>
+        </div>
+
+        <div class="coluna">
+          <h3>Currículo adaptado</h3>
+
+          <p class="legenda">
+            Confira as sugestões da inteligência artificial.
+          </p>
+
+          <pre id="curriculo-adaptado"></pre>
+        </div>
+
+      </div>
+
+      <div class="detalhes">
+        <h3>Alterações e requisitos da vaga</h3>
+
+        <div id="alteracoes"></div>
+      </div>
+
+      <div class="detalhes">
+        <h3>Prévia do PDF</h3>
+
+        <p>
+          Escolha as sugestões desejadas e gere a prévia. Sem alterações
+          selecionadas, a prévia e o download correspondem ao PDF original.
+          Confira o resultado antes de baixar; o layout pode variar entre PDFs.
+        </p>
+
+        <button type="button" id="gerar-pdf">
+          Gerar prévia do PDF
+        </button>
+
+        <p id="pdf-mensagem" role="status"></p>
+
+        <iframe
+          id="pdf-previa"
+          title="Prévia do currículo em PDF"
+          style="width: 100%; height: 600px; border: 1px solid #dce3ed;"
+          hidden
+        ></iframe>
+
+        <a
+          id="pdf-download"
+          download="curriculo_adaptado.pdf"
+          hidden
+        >
+          Baixar PDF
+        </a>
+      </div>
+
+      <button
+        type="button"
+        id="botao-voltar"
+        class="secundario"
+      >
+        Voltar
+      </button>
+
+    </section>
+
+  </main>
+
+  <!-- Biblioteca responsável por ler PDFs no navegador. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- JavaScript do projeto. -->
+  <script src="script.js"></script>
+</body>
+</html>
